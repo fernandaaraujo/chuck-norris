@@ -1,0 +1,29 @@
+name: ChuckNorris
+options:
+  bundleIdPrefix: br.com.mentoria
+  developmentLanguage: pt-BR
+configs:
+  dev: debug
+  prod: release
+targets:
+  ChuckNorris:
+    type: application
+    platform: iOS
+    deploymentTarget: '14.0'
+    sources: [App]
+    settings:
+      base:
+        INFOPLIST_FILE: App/Info.plist
+schemes:
+  dev:
+    run:
+      config: dev
+    build:
+      targets:
+        ChuckNorris: all
+  prod:
+    run:
+      config: prod
+    build:
+      targets:
+        ChuckNorris: all
