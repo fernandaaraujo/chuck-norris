@@ -14,6 +14,21 @@ targets:
     settings:
       base:
         INFOPLIST_FILE: App/Info.plist
+  UnitTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: '14.0'
+    sources:
+      - path: UnitTests
+    dependencies:
+      - target: ChuckNorris
+  UITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: UITests
+    dependencies:
+      - target: ChuckNorris
 schemes:
   dev:
     run:
