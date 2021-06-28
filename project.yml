@@ -5,6 +5,7 @@ options:
 configs:
   dev: debug
   prod: release
+  test: debug
 targets:
   ChuckNorris:
     type: application
@@ -19,7 +20,9 @@ targets:
     platform: iOS
     deploymentTarget: '14.0'
     sources:
-      - path: UnitTests
+      - path: App
+        excludes:
+          - UITests
     dependencies:
       - target: ChuckNorris
   UITests:
@@ -30,15 +33,35 @@ targets:
     dependencies:
       - target: ChuckNorris
 schemes:
-  dev:
+  Dev:
     run:
       config: dev
     build:
       targets:
         ChuckNorris: all
-  prod:
+    archive:
+      config: dev
+  Prod:
     run:
       config: prod
     build:
       targets:
         ChuckNorris: all
+  UnitTests:
+    build:
+      targets:
+        UnitTests: all
+    test:
+      config: dev
+      targets:
+        - ChuckNorris
+      gatherCoverageData: true
+  UITests:
+    build:
+      targets:
+        UITests: [test]
+    test:
+      config: dev
+      targets:
+        - ChuckNorris
+      gatherCoverageData: true
